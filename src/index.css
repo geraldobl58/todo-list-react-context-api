@@ -10,6 +10,10 @@ ul {
   list-style: none;
 }
 
+:focus {
+  outline: 0;
+}
+
 body {
   font-family: 'Nunito', sans-serif;
 }
