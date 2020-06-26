@@ -2,7 +2,7 @@ import * as todoTypes from './types';
 import { uuid } from 'uuidv4';
 
 function reducer(state, action) {
-  switch(action.types) {
+  switch(action.type) {
     case todoTypes.ADD_TODO:
       return state.concat({
         id: uuid(),

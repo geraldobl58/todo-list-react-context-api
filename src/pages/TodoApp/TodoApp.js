@@ -1,12 +1,14 @@
 import React from 'react';
 
+import TodoCreator from './containers/TodoCreator/TodoCreator';
+
 function TodoApp() {
   return (
-    <div>
-      <header>TodoList</header>
+    <>
+      <TodoCreator />
       <main>Todos</main>
       <footer>TodoFilter</footer>
-    </div>
+    </>
   )
 }
 
