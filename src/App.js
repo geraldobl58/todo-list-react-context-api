@@ -1,8 +1,12 @@
 import React from 'react';
 
+import FilterProvider from './state/filter/Provider';
+
 function App() {
   return (
-    <h1>React</h1>
+    <FilterProvider>
+      <h1>Context Api</h1>
+    </FilterProvider>
   );
 }
 
