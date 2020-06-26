@@ -1,12 +1,15 @@
 import React from 'react';
 
+import TodosProvider from './state/todo/Provider';
 import FilterProvider from './state/filter/Provider';
 
 function App() {
   return (
-    <FilterProvider>
-      <h1>Context Api</h1>
-    </FilterProvider>
+    <TodosProvider>
+      <FilterProvider>
+        <h1>Context Api</h1>
+      </FilterProvider>
+    </TodosProvider>
   );
 }
 
