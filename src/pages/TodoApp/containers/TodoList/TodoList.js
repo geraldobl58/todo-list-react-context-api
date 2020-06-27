@@ -39,7 +39,7 @@ function TodoList() {
 
   return (
     <div className={styles.container}>
-      <ul>
+      <ul className={styles.container}>
       {todos.map((todo) => (
         <TodoItem 
           key={todo.id} 
