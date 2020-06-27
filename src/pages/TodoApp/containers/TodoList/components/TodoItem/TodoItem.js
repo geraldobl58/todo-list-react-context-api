@@ -12,8 +12,8 @@ function TodoItem({ id ,title, onDelete, completed, onStatusUpdate, onModalOpen 
   }, []);
 
   const handleTitleUpdate = useCallback(() => {
-    onModalOpen(id, title);
-  }, [id, onModalOpen, title]);
+    onModalOpen(id);
+  }, [id, onModalOpen]);
 
   useEffect(() => {
     onStatusUpdate(id, isChecked);

@@ -6,10 +6,10 @@ import { MdClose } from 'react-icons/md';
 
 import styles from './TodoModal.module.css';
 
-function TodoModal({ todoId, title, onModalClose, onTitleUpdate }) {
+function TodoModal({ todoId, onModalClose, onTitleUpdate, findTitle }) {
   const { getFieldProps, touched, errors, isValid, handleSubmit } = useFormik({
     initialValues: {
-      title: title
+      title: findTitle(todoId)
     },
     validationSchema: yup.object({ title: yup.string().required('Obrigátorio!') }),
     onSubmit: (values, formikBag) => {
