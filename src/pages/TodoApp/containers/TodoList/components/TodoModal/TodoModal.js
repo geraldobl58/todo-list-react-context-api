@@ -2,32 +2,42 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-function TodoModal({ todoId, onModalClose, onTitleUpdate }) {
+import { MdClose } from 'react-icons/md';
+
+import styles from './TodoModal.module.css';
+
+function TodoModal({ todoId, title, onModalClose, onTitleUpdate }) {
   const { getFieldProps, touched, errors, isValid, handleSubmit } = useFormik({
     initialValues: {
-      title: ''
+      title: title
     },
     validationSchema: yup.object({ title: yup.string().required('Obrigátorio!') }),
     onSubmit: (values, formikBag) => {
       onTitleUpdate(todoId, values.title);
       formikBag.setFieldValue('title', '', false);
+      onModalClose();
     }
   });
 
   return (
     <>
+      <div className={styles.backdrop} onClick={onModalClose}></div>
+      <div className={styles.modal}>
+      <button onClick={onModalClose} className={styles.closeButton}><MdClose /></button>
       <form onSubmit={handleSubmit}>
-      <input 
-        type="text" { ...getFieldProps('title') } 
-        autoComplete='off'
-        placeholder="Nova Tarefa"
-      />
-      {touched.title && errors.title ? (
-        <small >{errors.title}</small>
-      ) : null}
-      <button type="submit" disabled={!isValid}>Atualizar</button>
-    </form>
-      <button onClick={onModalClose}>Fechar</button>
+        <input 
+          className={styles.input}
+          type="text"
+          autoComplete='off'
+          placeholder="Nova Tarefa"
+          { ...getFieldProps('title') }
+        />
+        {touched.title && errors.title ? (
+          <small className={styles.error}>{errors.title}</small>
+        ) : null}
+        <button className={styles.submit} type="submit" disabled={!isValid}>Atualizar</button>
+      </form>
+    </div>
     </>
   )
 }
