@@ -1,5 +1,9 @@
 import React, { useState, useCallback, useEffect } from 'react';
 
+import { MdModeEdit, MdDelete } from 'react-icons/md';
+
+import styles from './TodoItem.module.css';
+
 function TodoItem({ id ,title, onDelete, completed, onStatusUpdate, onModalOpen }) {
   const [isChecked, setIsChecked] = useState(completed);
 
@@ -20,12 +24,14 @@ function TodoItem({ id ,title, onDelete, completed, onStatusUpdate, onModalOpen 
   }, [id, onDelete]);
 
   return (
-    <>
-      <li>{title}</li>
-      <button onClick={handleTitleUpdate}>Autliazar</button>
-      <input type="checkbox" value={isChecked} onChange={handleCheckChange} />
-      <button onClick={handleDelete}>Excluir</button>
-    </>
+    <li className={styles.item}>
+      <span className={completed ? styles.completed : null}>{title}</span>
+      <div className={styles.controlButtons}>
+        <button onClick={handleTitleUpdate}><MdModeEdit /></button>
+        <input type="checkbox" value={isChecked} onChange={handleCheckChange} />
+        <button onClick={handleDelete}><MdDelete /></button>
+      </div>
+    </li>
   )
 }
 

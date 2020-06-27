@@ -1,0 +1,32 @@
+.item {
+  width: 600px;
+  padding: 30px;
+  box-shadow: 0 0 3px #ccc;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item span {
+  font-size: 16px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+.controlButtons button {
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  box-shadow: 0 0 3px #ccc;
+}
+
+.controlButtons svg {
+  font-size: 18px;
+  fill: #222;
+}

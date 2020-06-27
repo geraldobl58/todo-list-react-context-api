@@ -2,5 +2,18 @@
   position: fixed;
   top: 140px;
   left: 0;
+  width: 100%;
+  padding: 40px 60px;
+  height: calc(100vh - 140px);
+  background: #ececec;
+  overflow: auto;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container ul {
+  height: auto;
+  list-style: none;
 }
