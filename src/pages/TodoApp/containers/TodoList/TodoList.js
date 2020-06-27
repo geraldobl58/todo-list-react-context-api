@@ -24,17 +24,17 @@ function TodoList() {
     dispatchToTodos(todosActions.toggleTodoStatus(id, completed));
   }, [dispatchToTodos]);
 
-  const [showModal, isShowModal] = useState(false);
-
   const [currentId, setCurrentId] = useState(null);
+  const [currentTitle, setCurrentTitle] = useState('');
 
-  const handleModalOpen = useCallback((id) => {
+  const handleModalOpen = useCallback((id, title) => {
     setCurrentId(id);
-    isShowModal(true);
+    setCurrentTitle(title)
   }, []);
  
   const handleModalClose = useCallback(() => {
-    isShowModal(false);
+    setCurrentId(null);
+    setCurrentTitle('');
   }, []);
 
   return (
@@ -52,9 +52,10 @@ function TodoList() {
         />
       ))}
       </ul>
-      {showModal && (
+      {currentId && (
         <TodoModal 
           todoId={currentId}
+          title={currentTitle}
           onModalClose={handleModalClose} 
           onTitleUpdate={handleTitleUpdate} 
         />)
