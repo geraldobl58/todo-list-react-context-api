@@ -25,17 +25,22 @@ function TodoList() {
   }, [dispatchToTodos]);
 
   const [currentId, setCurrentId] = useState(null);
-  const [currentTitle, setCurrentTitle] = useState('');
 
-  const handleModalOpen = useCallback((id, title) => {
+  const handleModalOpen = useCallback((id) => {
     setCurrentId(id);
-    setCurrentTitle(title)
   }, []);
  
   const handleModalClose = useCallback(() => {
     setCurrentId(null);
-    setCurrentTitle('');
   }, []);
+
+  const getTitle = useCallback((id) => {
+    const currentTodo = todos.find((todo) => {
+      return todo.id === id;
+    });
+
+    return currentTodo.title;
+  }, [todos]);
 
   return (
     <div className={styles.container}>
@@ -55,9 +60,9 @@ function TodoList() {
       {currentId && (
         <TodoModal 
           todoId={currentId}
-          title={currentTitle}
           onModalClose={handleModalClose} 
           onTitleUpdate={handleTitleUpdate} 
+          findTitle={getTitle}
         />)
       }
     </div>
