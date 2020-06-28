@@ -11,10 +11,12 @@ import styles from './TodoCreator.module.css';
 function TodoCreator() {
   const { dispatchToTodos } = useContext(TodoContext);
 
-  const { getFieldProps, touched, errors, isValid, handleSubmit } = useFormik({
+  const { getFieldProps, errors, handleSubmit } = useFormik({
     initialValues: {
       title: ''
     },
+    validateOnChange: false,
+    validateOnBlur: false,
     validationSchema: yup.object({ title: yup.string().required('Obrigátorio!') }),
     onSubmit: (values, formikBag) => {
       dispatchToTodos(todosActions.addTodo(values.title));
@@ -37,10 +39,10 @@ function TodoCreator() {
         ref={inputTitle}
         className={styles.input}
       />
-      {touched.title && errors.title ? (
+      {errors.title ? (
         <small className={styles.error}>{errors.title}</small>
       ) : null}
-      <button className={styles.submit} type="submit" disabled={!isValid}>Adicionar</button>
+      <button className={styles.submit} type="submit">Adicionar</button>
     </form>
   )
 }

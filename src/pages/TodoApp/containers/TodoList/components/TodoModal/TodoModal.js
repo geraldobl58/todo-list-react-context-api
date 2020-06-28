@@ -7,10 +7,12 @@ import { MdClose } from 'react-icons/md';
 import styles from './TodoModal.module.css';
 
 function TodoModal({ todoId, onModalClose, onTitleUpdate, findTitle }) {
-  const { getFieldProps, touched, errors, isValid, handleSubmit } = useFormik({
+  const { getFieldProps, errors, handleSubmit } = useFormik({
     initialValues: {
       title: findTitle(todoId)
     },
+    validateOnChange: false,
+    validateOnBlur: false,
     validationSchema: yup.object({ title: yup.string().required('Obrigátorio!') }),
     onSubmit: (values, formikBag) => {
       onTitleUpdate(todoId, values.title);
@@ -32,10 +34,10 @@ function TodoModal({ todoId, onModalClose, onTitleUpdate, findTitle }) {
           placeholder="Nova Tarefa"
           { ...getFieldProps('title') }
         />
-        {touched.title && errors.title ? (
+        {errors.title ? (
           <small className={styles.error}>{errors.title}</small>
         ) : null}
-        <button className={styles.submit} type="submit" disabled={!isValid}>Atualizar</button>
+        <button className={styles.submit} type="submit">Atualizar</button>
       </form>
     </div>
     </>
